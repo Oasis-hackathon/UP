@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿
+
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
@@ -17,11 +20,25 @@ public class StageManager : MonoBehaviour
     public GameObject potal;
     public GameObject potionmarket;
 
-    public GameObject[] NormalMonster;
+    public GameObject pool;
+    public LifeEntity[] NormalMonster;
     public GameObject[] BossMonster;
+
+    public MonsterPooling poolingSystem;
+
+    
+
+    private Vector2 poolposition;
+    private Vector2 spawn;
+
     public void Awake()
     {
         sminstance = this;
+    }
+    private void Start()
+    {
+        
+        
     }
     private void Update()
     {
@@ -29,7 +46,9 @@ public class StageManager : MonoBehaviour
     }
     public void OpenStage(string str)
     {
-        if(str == "Lobby")
+       
+
+        if (str == "Lobby")
         {
             Debug.Log("로비입네다.");
             inventory.SetActive(true);
@@ -45,6 +64,7 @@ public class StageManager : MonoBehaviour
 
             return;
         }
+
         Debug.Log("로비가 아닙네다");
         
         inventory.SetActive(false);
@@ -57,5 +77,14 @@ public class StageManager : MonoBehaviour
         lobby.SetActive(true);
         potal.SetActive(false);
         potionmarket.SetActive(false);
+
+
+
     }
+    /*
+    IEnumerator Spawn(string str)
+    {
+        yield return;
+    }*/
 }
+

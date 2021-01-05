@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 
 public class UI : MonoBehaviour
 {
@@ -29,19 +29,23 @@ public class UI : MonoBehaviour
     public GameObject potionMarket;
 
     private Player playerstate;
+    public GameObject canvas;
 
+    
 
+    public SaveNLoad saveload;
     public GameObject initscence;
+    private MonsterPooling pool;
     private void Start()
     {
         playerstate = Player.GetComponent<Player>();
         UIinstance = this;
+
     }
     private void Update()
     {
         
         PlayerHpSlider.maxValue = playerstate.HP;
-       
         PlayerHpSlider.value = playerstate.CurrentHP;
        
     }
@@ -72,10 +76,7 @@ public class UI : MonoBehaviour
     {
         SelectedSlot.Use_Button();
     }
-    public void potionResigist()
-    {
-        SelectedSlot.registerPotion1();
-    }
+
     public void Open_ItemMake()
     {
         itemmakeUI.SetActive(true);
@@ -99,21 +100,35 @@ public class UI : MonoBehaviour
 
     public void InitScene()
     {
+        canvas.SetActive(true);
+        Close_UI();
         initscence.SetActive(false);
-        SceneManager.LoadScene("Lobby");
+        
         
         playerstate.GetComponent<Transform>().position = new Vector2(-45, -15);
         StageManager.sminstance.OpenStage("Lobby");
-
+        SceneManager.LoadScene("Lobby");
+        
+        /*
+        saveload.CallLoad();
+        Inventory.GetComponent<Inventory>().potionCountUpdate(1);
+        Inventory.GetComponent<Inventory>().potionCountUpdate(2);*/
     }
     public void BackLobby()
     {
+        pool = FindObjectOfType<MonsterPooling>();
+        pool.StopCo();
         SceneManager.LoadScene("Lobby");
         StageManager.sminstance.OpenStage("Lobby");
         playerstate.GetComponent<Transform>().position = new Vector2(-45, -15);
+        /*saveload.CallSave();*/
     }
     public void Open_potionMarchant()
     {
         potionMarket.SetActive(true);
+    }
+    public void Save()
+    {
+        saveload.CallSave();
     }
 }

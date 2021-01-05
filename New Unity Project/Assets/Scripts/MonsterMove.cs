@@ -12,16 +12,21 @@ public class MonsterMove : MonoBehaviour
 
     public GameObject M_HP;
     public Slider bar;
-
+    GameObject hpbar;
     private void Start()
     {
+        player = FindObjectOfType<Player>().gameObject;
+
         Speed = 1f;
         mystate = this.GetComponent<LifeEntity>();
         StartCoroutine(Move());
+        GameObject monsterHpCanvas = GameObject.Find("MonsterHpCanvas");
+        hpbar = Instantiate(M_HP, monsterHpCanvas.transform);
+        bar = hpbar.GetComponent<Slider>();
     }
     private void Update()
     {
-        M_HP.transform.position = this.transform.position + new Vector3(0, 1, 0);
+        hpbar.transform.position = this.transform.position + new Vector3(0, 2, 0);
         bar.maxValue = mystate.HP;
         bar.value = mystate.CurrentHP;
     }

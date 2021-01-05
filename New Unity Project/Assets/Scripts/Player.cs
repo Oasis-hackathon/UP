@@ -8,17 +8,18 @@ public class Player : LifeEntity
     public Weapon equip;
     public List<Item> apply;
     private int def;
-    private int baseAttackpower;
-
-    public Potion potion1;
-    public Potion potion2;
+    private int baseAttackpower = 5;
+    private StatusUI status;
     public int Def
     {
         get { return def; }
     }
     // 착용한 무기
     // 사용중인 물약
-    // 
+    private void Awake()
+    {
+        
+    }
     private void Start()
     {
         this.HP = 100;
@@ -44,73 +45,61 @@ public class Player : LifeEntity
         // 죽었을시 뭐 살아나는 방법
     }
 
-    public void recovery(Potion potion)
+    public void recovery()
     {
-        if (CurrentHP == HP )
+        Potion potion = DBmanager.instance.potionList[0];
+        if (Inventory.inveninstance.useItem(potion))
         {
-            return;
-        }
-        if(potion.potion_Type == 0)
-        {
+            if (CurrentHP == HP)
+            {
+                return;
+            }
             CurrentHP += potion.potion_Volume;
         }
         else
         {
             return;
         }
-        Inventory.inveninstance.useItem(potion);
+
+        
     }
 
-    public void Usepotion(Potion potion)
+    public void enhance()
     {
-        if (potion.potion_Type == 0 )
-        {
-            recovery(potion);
-        }
-        else
-        {
-            enhance(potion);
-        }
-    }
-
-    public void enhance(Potion potion)
-    {
+        Potion potion = DBmanager.instance.potionList[1];
         if (apply.Contains(potion))
         {
             return;
         }
-
-        if(potion.potion_Type == 1)
-        {
-            this.def += potion.potion_Volume;
-        }
-        else if(potion.potion_Type == 2)
+       
+        if (Inventory.inveninstance.useItem(potion))
         {
             this.AttackPower += potion.potion_Volume;
+            StartCoroutine(potiontime(potion));
         }
         else
         {
             return;
         }
-        Inventory.inveninstance.useItem(potion);
     }
 
     public void fitIn(Weapon weapon)
     {
+        if(equip != null)
+        {
+            AttackPower -= equip.weapon_AttackPower;
+        }
         equip = weapon;
         AttackPower += equip.weapon_AttackPower;
+        status = FindObjectOfType<StatusUI>();
+        status.View_Status();
     }
 
     IEnumerator potiontime(Potion potion)
     {
         yield return new WaitForSeconds(potion.potion_Time);
-        if (potion.potion_Type == 1)
-        {
-            this.def -= potion.potion_Volume;
-        }
-        if(potion.potion_Type == 2)
-        {
-            this.AttackPower -= potion.potion_Volume;
-        }
+        this.AttackPower -= potion.potion_Volume;
+
     }
+
 }

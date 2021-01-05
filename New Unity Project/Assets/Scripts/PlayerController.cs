@@ -1,9 +1,4 @@
-﻿using NUnit.Framework;
-using System.Collections;
-using System.Collections.Generic;
-
-using System.Runtime.InteropServices;
-using UnityEditor;
+﻿
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -19,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Transform platform;
     private Player playerscript;
 
+    
+
     private void Start()
     {
         Speed = 5;
@@ -26,6 +23,7 @@ public class PlayerController : MonoBehaviour
         dashPower = 5.0f;
         is_jump = false;
         playerscript = this.GetComponent<Player>();
+        
     }
     private void Update()
     {
@@ -79,7 +77,6 @@ public class PlayerController : MonoBehaviour
     public void jump()
     {
         // 점프 애니메이션
-        Debug.Log("jump");
         if (is_jump)
         {
             return;
@@ -103,10 +100,7 @@ public class PlayerController : MonoBehaviour
         // 어택 애니메이션
         this.GetComponentInChildren<Attack>().playerAttackMotion();
     }
-    public void buttonSkill_1()
-    {
-        // 장비에따라 바뀐 1번 스킬 사용
-    }
+ 
     public void buttonDash()
     {
         // 장비에 따라 바뀐 2번 스킬 사용
@@ -132,23 +126,14 @@ public class PlayerController : MonoBehaviour
  
     public void buttonPotion1()
     {
-        if( playerscript.potion1.potion_Type == 0)
-        {
-            playerscript.recovery(playerscript.potion1);
-            return;
-        }
 
-        playerscript.enhance(playerscript.potion1);
-
+        Inventory.inveninstance.potionCountUpdate(1);
+        playerscript.recovery();
     }
     public void buttonPotion2()
     {
-        if (playerscript.potion1.potion_Type == 0)
-        {
-            playerscript.recovery(playerscript.potion2);
-            return;
-        }
-        playerscript.enhance(playerscript.potion2);
+        Inventory.inveninstance.potionCountUpdate(2);
+        playerscript.enhance();
 
     }
 
@@ -157,6 +142,7 @@ public class PlayerController : MonoBehaviour
         is_jump = false;
         platform = collision.gameObject.GetComponent<Transform>();
     }
+    
     void dash()
     {
         Debug.Log("호 영 조 아");

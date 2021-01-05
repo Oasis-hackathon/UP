@@ -17,6 +17,10 @@ public class DBmanager : MonoBehaviour
     public string[] switch_name;
     public bool[] switches;
 
+    public bool tutorial_Ing;
+    public bool tutorial_Fin;
+    public int tutorial_Step;
+
     public List<Item> itemList = new List<Item>();
     public List<Weapon> weaponList = new List<Weapon>();
     public List<Potion> potionList = new List<Potion>();
@@ -29,6 +33,9 @@ public class DBmanager : MonoBehaviour
     public List<string> PotionDialogue = new List<string>();
     public List<string> PlayerDialogue = new List<string>();
 
+    
+    public List<int[]> stageposition = new List<int[]>();
+    public List<int[]> stageBosspositionList = new List<int[]>();
 
     private void Awake()
     {
@@ -36,32 +43,20 @@ public class DBmanager : MonoBehaviour
         {
             instance = this;
         }
+        
+        stageposition.Add(new int[] { -50, 20, -17, 0 });
+        stageposition.Add(new int[] { -50, -7, -17, 7 });
+        stageBosspositionList.Add(new int[]{ -40,10});
+        stageBosspositionList.Add(new int[] { -11, -12 });
+
         weaponList.Add(new Weapon(100, "종이 칼", "박스 몬스터들의 잔해를 재활용하여 만든 칼 입니다.", Item.ItemType.Weapon, 5, 1, false));
         weaponList.Add(new Weapon(101, "비닐 칼", "비닐 몬스터들의 잔해를 재활용하여 만든 칼 입니다.", Item.ItemType.Weapon, 7, 2, false));
         weaponList.Add(new Weapon(102, "투명 페트 둔기", "투명 페트 몬스터들의 잔해를 재활용하여 만든 둔기 입니다.", Item.ItemType.Weapon, 12, 3, true));
         weaponList.Add(new Weapon(103, "플라스틱 칼", "플라스틱 몬스터들의 잔해를 재활용하여 만든 칼 입니다.", Item.ItemType.Weapon, 13, 4, false));
         weaponList.Add(new Weapon(104, "캔 둔기", "캔 몬스터들의 잔해를 재활용하여 만든 둔기 입니다.", Item.ItemType.Weapon, 17, 5, true));
 
-        potionList.Add(new Potion(200, "hp물약1", "5회복", Item.ItemType.Potion, 0, 5, 0, 2, 300));
-        potionList.Add(new Potion(201, "hp물약2", "6회복", Item.ItemType.Potion, 0, 6, 0, 2, 302));
-        potionList.Add(new Potion(202, "hp물약3", "7회복", Item.ItemType.Potion, 0, 7, 0,2,304));
-        potionList.Add(new Potion(203, "hp물약4", "8회복", Item.ItemType.Potion, 0, 8, 0,2,306));
-        potionList.Add(new Potion(204, "hp물약5", "9회복", Item.ItemType.Potion, 0, 9, 0,2,308));
-        potionList.Add(new Potion(205, "mp물약1", "5회복", Item.ItemType.Potion, 1, 5, 0,2,300));
-        potionList.Add(new Potion(206, "mp물약2", "6회복", Item.ItemType.Potion, 1, 6, 0,2,302));
-        potionList.Add(new Potion(207, "mp물약3", "7회복", Item.ItemType.Potion, 1, 7, 0,2,304));
-        potionList.Add(new Potion(208, "mp물약4", "8회복", Item.ItemType.Potion, 1, 8, 0,2,306));
-        potionList.Add(new Potion(209, "mp물약5", "9회복", Item.ItemType.Potion, 1, 9, 0,2,308));
-        potionList.Add(new Potion(210, "def물약1", "1증가", Item.ItemType.Potion, 2, 1, 120,3,300));
-        potionList.Add(new Potion(211, "def물약2", "2증가", Item.ItemType.Potion, 2, 2, 120,3,302));
-        potionList.Add(new Potion(212, "def물약3", "3증가", Item.ItemType.Potion, 2, 3, 120,3,304));
-        potionList.Add(new Potion(213, "def물약4", "4증가", Item.ItemType.Potion, 2, 4, 120,3,306));
-        potionList.Add(new Potion(214, "def물약5", "5증가", Item.ItemType.Potion, 3, 5, 120,3,308));
-        potionList.Add(new Potion(215, "atk물약1", "1증가", Item.ItemType.Potion, 3, 1, 120,3,300));
-        potionList.Add(new Potion(216, "atk물약2", "2증가", Item.ItemType.Potion, 3, 2, 120,3,302));
-        potionList.Add(new Potion(217, "atk물약3", "3증가", Item.ItemType.Potion, 3, 3, 120,3,304));
-        potionList.Add(new Potion(218, "atk물약4", "4증가", Item.ItemType.Potion, 3, 4, 120,3,306));
-        potionList.Add(new Potion(219, "atk물약5", "5증가", Item.ItemType.Potion, 3, 5, 120,3,308));
+        potionList.Add(new Potion(200, "hp물약", "5회복", Item.ItemType.Potion, 0, 5, 0, 2, 300));
+        potionList.Add(new Potion(201, "atk물약1", "1증가", Item.ItemType.Potion, 2, 1, 120, 3, 300));
 
         materialList.Add(new Material(300, "종이_n", "종이 몬스터의 잔해입니다.", Item.ItemType.Material, 0));
         materialList.Add(new Material(301, "종이_b", "종이 몬스터의 잔해입니다.", Item.ItemType.Material, 0));
@@ -109,20 +104,8 @@ public class DBmanager : MonoBehaviour
         itemList.Add(new Weapon(103, "플라스틱 칼", "플라스틱 몬스터들의 잔해를 재활용하여 만든 칼 입니다.", Item.ItemType.Weapon, 13, 4, false));
         itemList.Add(new Weapon(104, "캔 둔기", "캔 몬스터들의 잔해를 재활용하여 만든 둔기 입니다.", Item.ItemType.Weapon, 17, 5, true));
         itemList.Add(new Potion(200, "hp물약1", "5회복", Item.ItemType.Potion, 0, 5, 0, 2, 300));
-        itemList.Add(new Potion(201, "hp물약2", "6회복", Item.ItemType.Potion, 0, 6, 0, 2, 302));
-        itemList.Add(new Potion(202, "hp물약3", "7회복", Item.ItemType.Potion, 0, 7, 0, 2, 304));
-        itemList.Add(new Potion(203, "hp물약4", "8회복", Item.ItemType.Potion, 0, 8, 0, 2, 306));
-        itemList.Add(new Potion(204, "hp물약5", "9회복", Item.ItemType.Potion, 0, 9, 0, 2, 308));
-        itemList.Add(new Potion(210, "def물약1", "1증가", Item.ItemType.Potion, 1, 1, 120, 3, 300));
-        itemList.Add(new Potion(211, "def물약2", "2증가", Item.ItemType.Potion, 1, 2, 120, 3, 302));
-        itemList.Add(new Potion(212, "def물약3", "3증가", Item.ItemType.Potion, 1, 3, 120, 3, 304));
-        itemList.Add(new Potion(213, "def물약4", "4증가", Item.ItemType.Potion, 1, 4, 120, 3, 306));
-        itemList.Add(new Potion(214, "def물약5", "5증가", Item.ItemType.Potion, 1, 5, 120, 3, 308));
-        itemList.Add(new Potion(215, "atk물약1", "1증가", Item.ItemType.Potion, 2, 1, 120, 3, 300));
-        itemList.Add(new Potion(216, "atk물약2", "2증가", Item.ItemType.Potion, 2, 2, 120, 3, 302));
-        itemList.Add(new Potion(217, "atk물약3", "3증가", Item.ItemType.Potion, 2, 3, 120, 3, 304));
-        itemList.Add(new Potion(218, "atk물약4", "4증가", Item.ItemType.Potion, 2, 4, 120, 3, 306));
-        itemList.Add(new Potion(219, "atk물약5", "5증가", Item.ItemType.Potion, 2, 5, 120, 3, 308));
+        itemList.Add(new Potion(201, "atk물약1", "1증가", Item.ItemType.Potion, 2, 1, 120, 3, 300));
+
         itemList.Add(new Material(300, "종이_n", "종이 몬스터의 잔해입니다.", Item.ItemType.Material, 0));
         itemList.Add(new Material(301, "종이_b", "종이 몬스터의 잔해입니다.", Item.ItemType.Material, 0));
         itemList.Add(new Material(302, "비닐_n", "비닐 몬스터의 잔해입니다.", Item.ItemType.Material, 1));
@@ -140,7 +123,6 @@ public class DBmanager : MonoBehaviour
         stageList.Add(new Stage("Stage3", "투명페트", 3));
         stageList.Add(new Stage("Stage4", "플라스틱", 4));
         stageList.Add(new Stage("Stage5", "캔", 5));
-
 
     }
 

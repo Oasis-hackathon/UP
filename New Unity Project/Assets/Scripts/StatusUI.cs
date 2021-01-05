@@ -13,7 +13,7 @@ public class StatusUI : MonoBehaviour
 
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI atkText;
-    public TextMeshProUGUI defText;
+
 
 
     //private Player playerscript;
@@ -35,7 +35,7 @@ public class StatusUI : MonoBehaviour
         hpText.text = player.HP.ToString();
 
         atkText.text = player.AttackPower.ToString();
-        defText.text = player.Def.ToString();
+
 
     }
 

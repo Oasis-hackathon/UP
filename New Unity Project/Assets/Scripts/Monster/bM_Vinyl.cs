@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class bM_Vinyl : LifeEntity
 {
-    public Item DropItem;
+    public int DropItemID;
     private void Start()
     {
-        DropItem = DBmanager.instance.materialList[3];
-        this.HP = 110;
+        DropItemID = 300;
+        this.HP = 30;
         this.CurrentHP = HP;
-        this.AttackPower = 10;
+        this.AttackPower = 5;
     }
     public override void Dead()
     {
         base.Dead();
-        ItemDrop(DropItem);
+        ItemDrop(DropItemID);
     }
 }

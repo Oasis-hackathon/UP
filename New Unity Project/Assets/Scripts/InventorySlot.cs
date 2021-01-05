@@ -17,8 +17,7 @@ public class InventorySlot : MonoBehaviour
     public GameObject PotionButton2;
 
 
-    public Item item;
-    private bool potionregisting;
+    public Item item;   
     /*
     public Item slotItem
     {
@@ -31,7 +30,6 @@ public class InventorySlot : MonoBehaviour
    
     void Start()
     {
-        potionregisting = false;
     }
 
     void Update()
@@ -56,17 +54,13 @@ public class InventorySlot : MonoBehaviour
             + slotItem.itemDesctription + "\n" ;*/
         UI.UIinstance.SelectedSlot = this;
 
-        if (potionregisting)
-        {
-            PotionButton1.SetActive(false);
-            PotionButton2.SetActive(false);
-        }
-        if (this.item.itemType == Item.ItemType.Weapon || this.item.itemType == Item.ItemType.Potion)
+        
+        if (this.item.itemType == Item.ItemType.Weapon)
         {
             Button.SetActive(true);
             ButtonText.text = "장착";
         }
-        if (this.item.itemType == Item.ItemType.Material)
+        else
         {
             Button.SetActive(false);
         }
@@ -76,25 +70,14 @@ public class InventorySlot : MonoBehaviour
         if (this.item.itemType == Item.ItemType.Weapon)
         {
             int index = item.itemID - 100;
-            playerAction.fitIn(DBmanager.instance.weaponList[index]); 
+            Debug.Log(index);
+            Weapon weapon = DBmanager.instance.weaponList[index];
+            playerAction.fitIn(weapon); 
 
         }
-        if (this.item.itemType == Item.ItemType.Potion)
-        {
-            
-            potionregisting = true;
-            PotionButton1.SetActive(true);
-            PotionButton2.SetActive(true);
-        }
+        
     }
-    public void registerPotion1()
-    {
-        int index = item.itemID - 200;
-        playerAction.potion1 = DBmanager.instance.potionList[index];
-        potionregisting = false;
-        PotionButton1.SetActive(false);
-        PotionButton2.SetActive(false);
-    }
+
     
 
 }

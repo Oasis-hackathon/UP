@@ -1,19 +1,20 @@
-﻿using NUnit.Framework;
-using System.Collections;
-using System.Collections.Generic;
+﻿
+
 using UnityEngine;
 
 public class LifeEntity : MonoBehaviour
 {
-    private int hp;
 
+    private int hp;
     private int currentHP;
-    private int currentMP;
     private int attackPower;
     private int defensivePower;
     protected bool is_Dead;
     protected bool is_Dash;
+    GameObject standard;
+    public GameObject dropitem;
 
+    private MonsterPooling pool;
     public int AttackPower
     {
         get { return attackPower; }
@@ -79,8 +80,12 @@ public class LifeEntity : MonoBehaviour
     {
         is_Dead = false;
         is_Dash = false;
+        
     }
+    public virtual void SetDropItem()
+    {
 
+    }
     public virtual void be_attacked(int _attackPower)
     {
         if (is_Dash)
@@ -95,13 +100,26 @@ public class LifeEntity : MonoBehaviour
     }
     public virtual void Dead()
     {
-        
-        Debug.Log("DEAD");
+        pool = FindObjectOfType<MonsterPooling>();
+
+        standard = GameObject.Find("StandardDrop");
+        GameObject drop = Instantiate(dropitem,standard.transform);
+        drop.transform.position = this.transform.position;
+        this.transform.position = new Vector2(70, 25);
         is_Dead = true;
+        
+        pool.pooling_ObjectQueue.Add(this);
+       
     }
-    public void ItemDrop(Item item)
+    public virtual void Respawn()
     {
-        Instantiate(item.itemIcon, this.transform);
+        this.currentHP = HP;
+        is_Dead = false;
+    }
+    public void ItemDrop(int itemID)
+    {
+        Item item = DBmanager.instance.materialList[itemID - 300];
+        Instantiate(item.itemIcon);
         this.transform.position = new Vector2(-100, 50);
 
     }

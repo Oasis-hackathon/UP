@@ -30,14 +30,7 @@ public class Attack : MonoBehaviour
         
         if (other.tag == "Monster" || other.tag == "Player")
         {
-            Debug.Log(other.name + "감지시작!");
-
             other.GetComponent<LifeEntity>().be_attacked(attackPower);
-            if(this.tag == "Weapon")
-            {
-                
-
-            }
         }
 
     }

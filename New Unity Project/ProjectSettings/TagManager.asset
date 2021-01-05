@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Monster
   - LastPlatform
+  - Pool
+  - Item
   layers:
   - Default
   - TransparentFX

@@ -3,27 +3,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Inventory : MonoBehaviour
 {
     public static Inventory inveninstance;
     public List<Item> OwnItem = new List<Item>();
     private InventorySlot[] slots;
 
+    public TextMeshProUGUI hpPotion;
+    public TextMeshProUGUI atkPotion;
+
     private void Awake()
     {
         inveninstance = this;
+        slots = this.GetComponentsInChildren<InventorySlot>();
+
+        for (int i = 0; i < DBmanager.instance.itemList.Count; i++)
+        {
+            GetItem(DBmanager.instance.itemList[i]);
+        }
     }
+   
     private void Start()
     {
-        slots = this.GetComponentsInChildren<InventorySlot>();
-        Debug.Log(DBmanager.instance.itemList[5]);
-        Item item = DBmanager.instance.itemList[5];
-        Debug.Log(item);
-        GetItem(item);
-        Debug.Log("호 영 조 아");
         ViewInventory();
-        
     }
 
     public void GetItem(Item item)
@@ -38,9 +41,9 @@ public class Inventory : MonoBehaviour
         }
         OwnItem.Add(item);
     }
+
     public bool useItem(Item item)
     {
-        Debug.Log("useItem함수 진입");
         for (int i = 0; i < OwnItem.Count; i++)
         {
             if (OwnItem[i].itemID == item.itemID)
@@ -52,11 +55,13 @@ public class Inventory : MonoBehaviour
                 OwnItem[i].itemCount -= item.itemCount;
                 return true;
             }
-            
         }
         return false;
-        
+
     }
+
+
+
     public void ViewInventory()
     {
         Debug.Log(OwnItem.Count);
@@ -73,5 +78,52 @@ public class Inventory : MonoBehaviour
             }
             
         }
+    }
+    public void potionCountUpdate(int num)
+    {
+        Item potion;
+        if (num == 1)
+        {
+            try
+            {
+                potion = DBmanager.instance.potionList[0];
+                for (int i = 0; i < OwnItem.Count; i++)
+                {
+                    if (OwnItem[i].itemID == potion.itemID)
+                    {
+                        hpPotion.text = OwnItem[i].itemCount.ToString();
+                    }
+                }
+            }
+            catch(NullReferenceException ie)
+            {
+                Debug.Log(ie);
+                hpPotion.text = "0";
+            }
+            
+        }
+       
+        if (num == 2)
+        {
+            try
+            {
+                potion = DBmanager.instance.potionList[1];
+                for (int i = 0; i < OwnItem.Count; i++)
+                {
+                    if (OwnItem[i].itemID == potion.itemID)
+                    {
+                        atkPotion.text = OwnItem[i].itemCount.ToString();
+                    }
+                }
+            }
+            catch(NullReferenceException ie)
+            {
+                Debug.Log(ie);
+                atkPotion.text = "0";
+            }
+           
+        }
+
+
     }
 }

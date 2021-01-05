@@ -838,7 +838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc65bbf8da0a39f48bd52fa8b8a47706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropItem: 0
+  DropItemID: 0
 --- !u!114 &1190317081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1134,7 +1134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1883630497}
   PlayerHpSlider: {fileID: 863996614}
-  PlayerMpSlider: {fileID: 2012266136}
   Conversation: {fileID: 0}
   conversationText: {fileID: 0}
   Inventory: {fileID: 0}
@@ -1145,6 +1144,8 @@ MonoBehaviour:
   SelectedMake: {fileID: 0}
   SelectedStage: {fileID: 0}
   StageMove: {fileID: 0}
+  potionMarket: {fileID: 0}
+  saveload: {fileID: 0}
   initscence: {fileID: 0}
 --- !u!1 &1831207553
 GameObject:
@@ -1476,6 +1477,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 915041811d98d57498454481fc542fca, type: 3}
+--- !u!1001 &2004851875200950820
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1280615897793221139, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_Name
+      value: Pool
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 76.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280615897793221150, guid: f872d193bd9834d4dad1b5b7cc85f4b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f872d193bd9834d4dad1b5b7cc85f4b0, type: 3}
 --- !u!4 &3046868323869724770
 Transform:
   m_ObjectHideFlags: 0
@@ -1520,6 +1590,9 @@ MonoBehaviour:
   var: []
   switch_name: []
   switches: 
+  tutorial_Ing: 0
+  tutorial_Fin: 0
+  tutorial_Step: 0
   itemList: []
   weaponList: []
   potionList: []
@@ -2101,12 +2174,12 @@ PrefabInstance:
     - target: {fileID: 8307678706247135650, guid: 02b58320ce18b104d81e19139770c6e4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.91
+      value: 59.34
       objectReference: {fileID: 0}
     - target: {fileID: 8307678706247135650, guid: 02b58320ce18b104d81e19139770c6e4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.94
+      value: 5.47
       objectReference: {fileID: 0}
     - target: {fileID: 8307678706247135650, guid: 02b58320ce18b104d81e19139770c6e4,
         type: 3}
