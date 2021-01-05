@@ -10,8 +10,13 @@ public class ItemMakeUI : MonoBehaviour
     public MakeItemSlot[] NeedItemSlots;
     public Inventory inven;
     List<Recipe> recipes = new List<Recipe>();
+
+    private AudioSource audioSource;
+    public AudioClip s_makeItem;
+
     private void Start()
     {
+        audioSource = this.GetComponent<AudioSource>();
         makeItemSlots = ItemList.GetComponentsInChildren<MakeItemSlot>();
         NeedItemSlots = NeedItemList.GetComponentsInChildren<MakeItemSlot>();
         recipes = DBmanager.instance.itemRecipe;
@@ -39,6 +44,7 @@ public class ItemMakeUI : MonoBehaviour
 
     public bool MakeItem(MakeItemSlot makeitem)
     {
+        
         Debug.Log("maekItem함수 진입!");
         int index = makeitem.MakeItem.itemID - 100;
 
@@ -52,7 +58,9 @@ public class ItemMakeUI : MonoBehaviour
                 return false;
             }
         }
-        Debug.Log("호영조아");
+        audioSource.clip = s_makeItem;
+        audioSource.Play();
+        Debug.Log("아이템 제작 성공");
         inven.GetItem(makeitem.MakeItem);
         return true;
 

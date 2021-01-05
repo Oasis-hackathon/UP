@@ -14,8 +14,14 @@ public class PlayerController : MonoBehaviour
     private Transform platform;
     private Player playerscript;
 
-    
+    private AudioSource audioSource;
 
+    public AudioClip s_Dash;
+    public AudioClip s_DownJump;
+    public AudioClip s_Jump;
+    public AudioClip s_Walk;
+
+    
     private void Start()
     {
         Speed = 5;
@@ -23,7 +29,7 @@ public class PlayerController : MonoBehaviour
         dashPower = 5.0f;
         is_jump = false;
         playerscript = this.GetComponent<Player>();
-        
+        audioSource = this.GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -44,20 +50,30 @@ public class PlayerController : MonoBehaviour
 
     public void down_right()
     {
+        audioSource.clip = s_Walk;
+        audioSource.loop = true;
+        audioSource.Play();
         right = true;
     }
     public void up_right()
     {
+        audioSource.Stop();
+        audioSource.loop = false;
         right = false;
     }
 
 
     public void down_left()
     {
+        audioSource.clip = s_Walk;
+        audioSource.loop = true;
+        audioSource.Play();
         left = true;
     }
     public void up_left()
     {
+        audioSource.Stop();
+        audioSource.loop = false;
         left = false;
     }
 
@@ -81,14 +97,23 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        audioSource.clip = s_Jump;
+        audioSource.Play();
         this.GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpPower, ForceMode2D.Impulse);
         is_jump = true;
     }
     public void bottomjump()
     {
         // 아래 점프 애니메이션
+        if (is_jump)
+        {
+            return;
+        }
         if(platform.tag != "LastPlatform")
         {
+            audioSource.clip = s_DownJump;
+            audioSource.Play();
+            is_jump = true;
             Transform playerTransform = this.GetComponent<Transform>();
             playerTransform.position = new Vector2(playerTransform.position.x, platform.position.y-1);
         }      
@@ -98,12 +123,14 @@ public class PlayerController : MonoBehaviour
     public void buttonAttack()
     {
         // 어택 애니메이션
+ 
         this.GetComponentInChildren<Attack>().playerAttackMotion();
     }
  
     public void buttonDash()
     {
-        // 장비에 따라 바뀐 2번 스킬 사용
+        audioSource.clip = s_Dash;
+        audioSource.Play();
         if (playerscript.Is_Dash || dashcool)
         {
             return;

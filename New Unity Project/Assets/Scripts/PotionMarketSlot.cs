@@ -24,10 +24,17 @@ public class PotionMarketSlot : MonoBehaviour
 
     public void Click()
     {
+        
         Item useitem = DBmanager.instance.materialList[potion.price_material - 300];
         useitem.itemCount = potion.price;
-        inven.useItem(useitem);
-        inven.GetItem(potion);
+        if (inven.useItem(useitem))
+        {
+            inven.GetItem(potion);
+            Debug.Log("구매에 성공했습니다!");
+            return;
+        }
+        Debug.Log("재료가 부족합니다.");
+
     }
 
 }

@@ -36,8 +36,18 @@ public class UI : MonoBehaviour
     public SaveNLoad saveload;
     public GameObject initscence;
     private MonsterPooling pool;
+
+    private AudioSource audioSource;
+    public AudioClip s_InvenOff;
+    public AudioClip s_InvenOn;
+    public AudioClip s_Button;
+
+
+
+
     private void Start()
     {
+        audioSource = this.GetComponent<AudioSource>();
         playerstate = Player.GetComponent<Player>();
         UIinstance = this;
 
@@ -59,12 +69,18 @@ public class UI : MonoBehaviour
     }
     public void Open_InvenNStatus()
     {
+        audioSource.clip = s_InvenOn;
+        audioSource.Play();
+
         InvenNStatus.SetActive(true);
         Inventory.GetComponent<Inventory>().ViewInventory();
         CharaterStates.GetComponent<StatusUI>().View_Status();
     }
     public void Close_UI()
     {
+        audioSource.clip = s_InvenOff;
+        audioSource.Play();
+
         itemmakeUI.GetComponent<ItemMakeUI>().ClearSlots();
 
         InvenNStatus.SetActive(false);
@@ -79,16 +95,23 @@ public class UI : MonoBehaviour
 
     public void Open_ItemMake()
     {
+        audioSource.clip = s_InvenOn;
+        audioSource.Play();
         itemmakeUI.SetActive(true);
         
     }
     public void MakeItem()
     {
+        audioSource.clip = s_Button;
+        audioSource.Play();
         itemmakeUI.GetComponent<ItemMakeUI>().MakeItem(SelectedMake);
     }
 
     public void Opne_StageMove()
     {
+        audioSource.clip = s_InvenOn;
+        audioSource.Play();
+
         StageMove.SetActive(true);
     }
     
@@ -125,6 +148,9 @@ public class UI : MonoBehaviour
     }
     public void Open_potionMarchant()
     {
+        audioSource.clip = s_InvenOn;
+        audioSource.Play();
+
         potionMarket.SetActive(true);
     }
     public void Save()

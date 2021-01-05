@@ -53,6 +53,10 @@ public class Inventory : MonoBehaviour
                     return false;
                 }
                 OwnItem[i].itemCount -= item.itemCount;
+                if(OwnItem[i].itemCount == 0)
+                {
+                    OwnItem.RemoveAt(i);
+                }
                 return true;
             }
         }
