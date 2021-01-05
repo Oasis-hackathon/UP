@@ -14,8 +14,10 @@ public class Attack : MonoBehaviour
     public AudioClip s_Hammer;
     public AudioClip s_Knife;
 
+    private GameObject effect;
     private void Start()
     {
+        effect = this.transform.GetChild(0).gameObject;
         playerscript = this.GetComponentInParent<Player>();
         audioSource = this.GetComponentInParent<AudioSource>();
         attackPower = 10;//this.GetComponentInParent<LifeEntity>().AttackPower;
@@ -28,6 +30,8 @@ public class Attack : MonoBehaviour
         {
             return;
         }
+        
+        
         if (playerscript.equip.itemID == 102 || playerscript.equip.itemID == 104)
         {
             audioSource.clip = s_Hammer;
@@ -38,6 +42,8 @@ public class Attack : MonoBehaviour
             audioSource.clip = s_Knife;
             audioSource.Play();
         }
+        effect.transform.rotation = this.transform.rotation;
+        effect.SetActive(true);
         is_Attacking = true;
         col.enabled = true;
         col.isTrigger = true;
@@ -54,6 +60,7 @@ public class Attack : MonoBehaviour
     }
     void Attacking()
     {
+        effect.SetActive(false);
         is_Attacking = false;
         col.enabled = false;
         col.isTrigger = false;

@@ -44,8 +44,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.55, y: 0.8}
+  m_Offset: {x: 0, y: 0.65}
+  m_Size: {x: 1.24, y: 1.31}
   m_Direction: 0
 --- !u!1 &3225947680021987623
 GameObject:
@@ -123,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: 251581123
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 69756670f55b1b244a1bad14d85a6d33, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 49840129ad6147742a1d2f221e89101a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -197,8 +197,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3.5, y: 6}
+  m_Offset: {x: 0, y: 4.79}
+  m_Size: {x: 7.79, y: 9.76}
   m_Direction: 0
 --- !u!114 &-7211133262273444026
 MonoBehaviour:

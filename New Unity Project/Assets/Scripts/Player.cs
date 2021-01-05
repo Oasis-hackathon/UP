@@ -80,6 +80,7 @@ public class Player : LifeEntity
             this.AttackPower += potion.potion_Volume;
             apply.Add(potion);
             StartCoroutine(potiontime(potion));
+            UI.UIinstance.buff.SetActive(true);
         }
         else
         {
@@ -107,6 +108,7 @@ public class Player : LifeEntity
         yield return new WaitForSeconds(potion.potion_Time);
         apply.RemoveAt(0);
         this.AttackPower -= potion.potion_Volume;
+        UI.UIinstance.buff.SetActive(false);
 
     }
 

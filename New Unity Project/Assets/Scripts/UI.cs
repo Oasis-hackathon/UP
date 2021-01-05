@@ -39,6 +39,8 @@ public class UI : MonoBehaviour
 
     public GameObject deadMassage;
 
+    public GameObject buff;
+
     private AudioSource audioSource;
     public AudioClip s_InvenOff;
     public AudioClip s_InvenOn;

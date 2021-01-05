@@ -57,10 +57,13 @@ public class MonsterMove : MonoBehaviour
         if (targetmove > 0)
         {
             transform.position += Vector3.right * Speed * Time.deltaTime;
+            this.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else
         {
             transform.position += Vector3.left * Speed * Time.deltaTime;
+            this.transform.rotation = Quaternion.Euler(0, 0, 0);
+
         }
 
     }

@@ -97,8 +97,10 @@ public class Inventory : MonoBehaviour
                     if (OwnItem[i].itemID == potion.itemID)
                     {
                         hpPotion.text = OwnItem[i].itemCount.ToString();
+                        return;
                     }
                 }
+                hpPotion.text = "0";
             }
             catch(NullReferenceException ie)
             {
@@ -118,8 +120,10 @@ public class Inventory : MonoBehaviour
                     if (OwnItem[i].itemID == potion.itemID)
                     {
                         atkPotion.text = OwnItem[i].itemCount.ToString();
+                        return;
                     }
                 }
+                atkPotion.text = "0";
             }
             catch(NullReferenceException ie)
             {

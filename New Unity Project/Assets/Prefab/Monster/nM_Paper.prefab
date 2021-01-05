@@ -44,7 +44,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.33}
   m_Size: {x: 0.55, y: 0.8}
   m_Direction: 0
 --- !u!1 &3225947680021987623
@@ -58,10 +58,10 @@ GameObject:
   - component: {fileID: 8823231630676483113}
   - component: {fileID: 2867158655544488380}
   - component: {fileID: 4186740265493736312}
-  - component: {fileID: 1430908313034137833}
   - component: {fileID: 1399061135}
   - component: {fileID: 1399061136}
   - component: {fileID: 5519203811597315401}
+  - component: {fileID: 1428725635}
   m_Layer: 8
   m_Name: nM_Paper
   m_TagString: Monster
@@ -78,7 +78,7 @@ Transform:
   m_GameObject: {fileID: 3225947680021987623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.3737208}
   m_Children:
   - {fileID: 1623994403}
   m_Father: {fileID: 0}
@@ -121,7 +121,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 251581123
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 69756670f55b1b244a1bad14d85a6d33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -155,19 +155,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1430908313034137833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3225947680021987623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc65bbf8da0a39f48bd52fa8b8a47706, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DropItemID: 0
 --- !u!114 &1399061135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d3087089588b0439b1beb8fa9b244c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  s_Hammer: {fileID: 0}
+  s_Knife: {fileID: 0}
 --- !u!70 &5519203811597315401
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -208,6 +197,20 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 2.46}
   m_Size: {x: 3.5, y: 6}
   m_Direction: 0
+--- !u!114 &1428725635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225947680021987623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc65bbf8da0a39f48bd52fa8b8a47706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropitem: {fileID: 2200033212752607191, guid: 96e397e299882b44db78bf540e7017ce,
+    type: 3}

@@ -154,14 +154,15 @@ public class PlayerController : MonoBehaviour
     public void buttonPotion1()
     {
 
-        Inventory.inveninstance.potionCountUpdate(1);
+        
         playerscript.recovery();
+        Inventory.inveninstance.potionCountUpdate(1);
     }
     public void buttonPotion2()
     {
-        Inventory.inveninstance.potionCountUpdate(2);
+        
         playerscript.enhance();
-
+        Inventory.inveninstance.potionCountUpdate(2);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
