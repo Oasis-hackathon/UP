@@ -31,11 +31,13 @@ public class UI : MonoBehaviour
     private Player playerstate;
     public GameObject canvas;
 
-    
+    public GameObject failMassage;
 
     public SaveNLoad saveload;
     public GameObject initscence;
     private MonsterPooling pool;
+
+    public GameObject deadMassage;
 
     private AudioSource audioSource;
     public AudioClip s_InvenOff;
@@ -156,5 +158,26 @@ public class UI : MonoBehaviour
     public void Save()
     {
         saveload.CallSave();
+    }
+
+    public void FailMassage(string str)
+    {
+        failMassage.SetActive(true);
+        TextMeshProUGUI text = failMassage.GetComponentInChildren<TextMeshProUGUI>();
+        text.text = str;
+        Invoke("waitting", 2f);
+    }
+    private void waitting()
+    {
+        Debug.Log("끗");
+        failMassage.SetActive(false);
+    }
+    public void DeadMassage()
+    {
+        deadMassage.SetActive(false);
+        BackLobby();
+        Player playerHp = Player.GetComponent<Player>();
+        playerHp.CurrentHP = playerHp.HP;
+        playerHp.Resurrection();
     }
 }

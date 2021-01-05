@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class nM_Plastic : LifeEntity
 {
-    public int DropItemID;
     private void Start()
     {
-        DropItemID = 300;
-        this.HP = 30;
+        this.HP = 75;
         this.CurrentHP = HP;
         this.AttackPower = 5;
-    }
-    public override void Dead()
-    {
-        base.Dead();
-        ItemDrop(DropItemID);
+        Item item = DBmanager.instance.materialList[6];
+        dropitem.GetComponent<DropItem>().item = item;
+        dropitem.GetComponent<SpriteRenderer>().sprite = item.itemIcon;
     }
 }

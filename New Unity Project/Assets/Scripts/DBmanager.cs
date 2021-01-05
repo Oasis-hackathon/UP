@@ -46,8 +46,16 @@ public class DBmanager : MonoBehaviour
         
         stageposition.Add(new int[] { -50, 20, -17, 0 });
         stageposition.Add(new int[] { -50, -7, -17, 7 });
+        stageposition.Add(new int[] { -54, 14, -15, 9 });
+        stageposition.Add(new int[] { -56, 46, -15, 10 });
+        stageposition.Add(new int[] { -52, 54, 4, 26 });
         stageBosspositionList.Add(new int[]{ -40,10});
         stageBosspositionList.Add(new int[] { -11, -12 });
+        stageBosspositionList.Add(new int[] { -4,8});
+        stageBosspositionList.Add(new int[] { 24, -12 });
+        stageBosspositionList.Add(new int[] { 51, -22 });
+
+
 
         weaponList.Add(new Weapon(100, "종이 칼", "박스 몬스터들의 잔해를 재활용하여 만든 칼 입니다.", Item.ItemType.Weapon, 5, 1, false));
         weaponList.Add(new Weapon(101, "비닐 칼", "비닐 몬스터들의 잔해를 재활용하여 만든 칼 입니다.", Item.ItemType.Weapon, 7, 2, false));

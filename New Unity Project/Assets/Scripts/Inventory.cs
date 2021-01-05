@@ -50,6 +50,7 @@ public class Inventory : MonoBehaviour
             {
                 if (OwnItem[i].itemCount < item.itemCount)
                 {
+                    UI.UIinstance.FailMassage("아이템이 부족합니다.");
                     return false;
                 }
                 OwnItem[i].itemCount -= item.itemCount;

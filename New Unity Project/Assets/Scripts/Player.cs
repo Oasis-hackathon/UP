@@ -7,6 +7,8 @@ public class Player : LifeEntity
 {
     public Weapon equip;
     public List<Item> apply;
+    public GameObject deadMassage;
+
     private int def;
     private int baseAttackpower = 5;
     private StatusUI status;
@@ -41,6 +43,7 @@ public class Player : LifeEntity
     public override void Dead()
     {
         is_Dead = true;
+        deadMassage.SetActive(true);
         // 죽음 애니메이션 실행
         // 죽었을시 뭐 살아나는 방법
     }
@@ -75,6 +78,7 @@ public class Player : LifeEntity
         if (Inventory.inveninstance.useItem(potion))
         {
             this.AttackPower += potion.potion_Volume;
+            apply.Add(potion);
             StartCoroutine(potiontime(potion));
         }
         else
@@ -94,10 +98,14 @@ public class Player : LifeEntity
         status = FindObjectOfType<StatusUI>();
         status.View_Status();
     }
-
+    public void Resurrection()
+    {
+        is_Dead = false;
+    }
     IEnumerator potiontime(Potion potion)
     {
         yield return new WaitForSeconds(potion.potion_Time);
+        apply.RemoveAt(0);
         this.AttackPower -= potion.potion_Volume;
 
     }

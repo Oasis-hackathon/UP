@@ -11,6 +11,7 @@ public class LifeEntity : MonoBehaviour
     private int defensivePower;
     protected bool is_Dead;
     protected bool is_Dash;
+    protected bool is_Boss;
     GameObject standard;
     public GameObject dropitem;
 
@@ -107,8 +108,11 @@ public class LifeEntity : MonoBehaviour
         drop.transform.position = this.transform.position;
         this.transform.position = new Vector2(70, 25);
         is_Dead = true;
+        if (!is_Boss)
+        {
+            pool.pooling_ObjectQueue.Add(this);
+        }
         
-        pool.pooling_ObjectQueue.Add(this);
        
     }
     public virtual void Respawn()
@@ -116,13 +120,7 @@ public class LifeEntity : MonoBehaviour
         this.currentHP = HP;
         is_Dead = false;
     }
-    public void ItemDrop(int itemID)
-    {
-        Item item = DBmanager.instance.materialList[itemID - 300];
-        Instantiate(item.itemIcon);
-        this.transform.position = new Vector2(-100, 50);
 
-    }
 
 
 }

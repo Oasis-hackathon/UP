@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class bM_Can : LifeEntity
 {
-    public int DropItemID;
     private void Start()
     {
-        DropItemID = 300;
-        this.HP = 30;
+        is_Boss = true;
+
+        this.HP = 120;
         this.CurrentHP = HP;
-        this.AttackPower = 5;
-    }
-    public override void Dead()
-    {
-        base.Dead();
-        ItemDrop(DropItemID);
+        this.AttackPower = 7;
+        Item item = DBmanager.instance.materialList[9];
+        dropitem.GetComponent<DropItem>().item = item;
+        dropitem.GetComponent<SpriteRenderer>().sprite = item.itemIcon;
+
     }
 }

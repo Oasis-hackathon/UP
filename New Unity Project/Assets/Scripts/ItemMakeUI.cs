@@ -54,6 +54,7 @@ public class ItemMakeUI : MonoBehaviour
 
             if (!inven.useItem(needitem))
             {
+                UI.UIinstance.FailMassage("재료가 부족합니다.");
                 Debug.Log("재료부족");
                 return false;
             }

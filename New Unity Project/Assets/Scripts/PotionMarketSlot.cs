@@ -33,7 +33,7 @@ public class PotionMarketSlot : MonoBehaviour
             Debug.Log("구매에 성공했습니다!");
             return;
         }
-        Debug.Log("재료가 부족합니다.");
+        UI.UIinstance.FailMassage("재료가 부족합니다.");
 
     }
 

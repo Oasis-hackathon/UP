@@ -3,7 +3,28 @@ guid: ab59114e3538afd4a9e2d4c2fde3bda9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Player: {instanceID: 0}
+  - PlayerHpSlider: {instanceID: 0}
+  - Conversation: {instanceID: 0}
+  - conversationText: {instanceID: 0}
+  - Inventory: {instanceID: 0}
+  - CharaterStates: {instanceID: 0}
+  - InvenNStatus: {instanceID: 0}
+  - SelectedSlot: {instanceID: 0}
+  - itemmakeUI: {instanceID: 0}
+  - SelectedMake: {instanceID: 0}
+  - SelectedStage: {instanceID: 0}
+  - StageMove: {instanceID: 0}
+  - potionMarket: {instanceID: 0}
+  - canvas: {instanceID: 0}
+  - failMassage: {instanceID: 0}
+  - saveload: {instanceID: 0}
+  - initscence: {instanceID: 0}
+  - deadMassage: {instanceID: 0}
+  - s_InvenOff: {fileID: 8300000, guid: 84ea2a561cbb34648b3ce62f14aed5ab, type: 3}
+  - s_InvenOn: {fileID: 8300000, guid: bb76a00cbd3deea48ac065e1c4862ce8, type: 3}
+  - s_Button: {fileID: 8300000, guid: aa0f9a6edcd41934bb226ba6997444a5, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

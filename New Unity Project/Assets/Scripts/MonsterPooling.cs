@@ -11,7 +11,6 @@ public class MonsterPooling : MonoBehaviour
     private DropItem[] drops;
     public GameObject boss;
     public List<LifeEntity> pooling_ObjectQueue = new List<LifeEntity>();
-    public List<DropItem> pooling_Item = new List<DropItem>();
     public void Start()
     {
         n_monster = this.GetComponentsInChildren<LifeEntity>();

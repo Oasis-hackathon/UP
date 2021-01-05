@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class bM_Paper : LifeEntity
 {
-    public int DropItemID;
+
     private void Start()
     {
-        DropItemID = 300;
-        this.HP = 30;
+        is_Boss = true;
+        
+        this.HP = 60;
         this.CurrentHP = HP;
-        this.AttackPower = 5;
+        this.AttackPower = 7;
+        Item item = DBmanager.instance.materialList[1];
+        dropitem.GetComponent<DropItem>().item = item;
+        dropitem.GetComponent<SpriteRenderer>().sprite = item.itemIcon;
+
     }
-    public override void Dead()
-    {
-        Debug.Log("DEAD");
-        this.transform.position = new Vector2(70, 25);
-        is_Dead = true;
-        //temDrop(DropItemID);
-    }
+
 }

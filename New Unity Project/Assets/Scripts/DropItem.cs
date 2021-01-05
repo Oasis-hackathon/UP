@@ -9,19 +9,7 @@ public class DropItem : MonoBehaviour
     {
         
     }
-    /*
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            Debug.Log("아이템 게또!");
 
-            Item dropitem = this.GetComponent<DropItem>().item;
-            Inventory.inveninstance.GetItem(dropitem);
-
-            Destroy(this.gameObject);
-        }
-    }*/
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
